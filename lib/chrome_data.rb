@@ -7,7 +7,10 @@ require "chrome_data/model"
 require "chrome_data/style"
 require "chrome_data/model_year"
 require "chrome_data/vehicle"
+
+require 'active_support/notifications'
 require 'active_support/cache'
+require 'active_support/core_ext/hash/reverse_merge'
 
 require "symboltable"
 
