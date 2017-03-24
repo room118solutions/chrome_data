@@ -4,21 +4,30 @@ http_interactions:
     method: post
     uri: http://services.chromedata.com/Description/7a
     body:
-      encoding: US-ASCII
-      string: ! "<?xml version=\"1.0\"?>\n<soap:Envelope xmlns:dtns=\"urn:description7a.services.chrome.com\"
-        xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Header/>\n
-        \ <soap:Body>\n    <dtns:ModelsRequest>\n      <dtns:accountInfo number=\"123456\"
-        secret=\"1111111111111111\" country=\"US\" language=\"en\"/>\n      <dtns:modelYear>2013</dtns:modelYear>\n
-        \     <dtns:divisionId>13</dtns:divisionId>\n    </dtns:ModelsRequest>\n  </soap:Body>\n</soap:Envelope>\n"
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <soap:Envelope xmlns:ns0="urn:description7a.services.chrome.com" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+          <soap:Header/>
+          <soap:Body>
+            <ns0:ModelsRequest>
+              <ns0:accountInfo number="123456" secret="1111111111111111" country="US" language="en"/>
+              <ns0:modelYear>2013</ns0:modelYear>
+              <ns0:divisionId>13</ns0:divisionId>
+            </ns0:ModelsRequest>
+          </soap:Body>
+        </soap:Envelope>
     headers:
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '441'
+      - '450'
       Soapaction:
       - ''
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -27,9 +36,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 20 Mar 2013 01:43:28 GMT
+      - Fri, 24 Mar 2017 21:53:58 GMT
       Server:
-      - Apache
+      - Apache/2.2.15 (CentOS)
       Content-Length:
       - '1956'
       P3p:
@@ -39,9 +48,9 @@ http_interactions:
       Content-Type:
       - text/xml;charset=utf-8
       Chrome:
-      - '198'
+      - '8.215'
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: <?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body><Models
         xmlns="urn:description7a.services.chrome.com"><responseStatus responseCode="Successful"
         description="Successful"/><model id="25459">C-Max Energi</model><model id="25455">C-Max
@@ -54,8 +63,8 @@ http_interactions:
         Electric</model><model id="25457">Fusion</model><model id="25886">Fusion Energi</model><model
         id="24997">Mustang</model><model id="21803">Sedan Police Interceptor</model><model
         id="25801">Super Duty F-250 SRW</model><model id="25777">Super Duty F-350
-        DRW</model><model id="25802">Super Duty F-350 DRW</model><model id="25805">Super
-        Duty F-350 SRW</model><model id="25776">Super Duty F-350 SRW</model><model
+        DRW</model><model id="25802">Super Duty F-350 DRW</model><model id="25776">Super
+        Duty F-350 SRW</model><model id="25805">Super Duty F-350 SRW</model><model
         id="25790">Super Duty F-450 DRW</model><model id="25778">Super Duty F-450
         DRW</model><model id="25341">Super Duty F-53 Motorhome</model><model id="25779">Super
         Duty F-550 DRW</model><model id="25342">Super Duty F-59 Stripped Chassis</model><model
@@ -66,5 +75,5 @@ http_interactions:
         Connect</model><model id="25345">Transit Connect Wagon</model><model id="21811">Utility
         Police Interceptor</model></Models></S:Body></S:Envelope>
     http_version:
-  recorded_at: Wed, 20 Mar 2013 01:43:28 GMT
-recorded_with: VCR 2.4.0
+  recorded_at: Fri, 24 Mar 2017 21:53:58 GMT
+recorded_with: VCR 3.0.3

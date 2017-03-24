@@ -25,7 +25,7 @@ describe ChromeData::Division do
       find_divisions
 
       @divisions.first.must_be_instance_of ChromeData::Division
-      @divisions.size.must_equal 38
+      @divisions.size.must_equal 43
     end
 
     it 'sets ID on Division objects' do
