@@ -11,8 +11,8 @@ module ChromeData
 
     class << self
       # Builds request, sets additional data on request element, makes request,
-      # and returns array of child elements wrapped in instances of this class
-      def request(data)
+      # and yields response to given block, which is expected to return an appropriate response
+      def request(data, &block)
         request = build_request
 
         request.body do |b|
@@ -38,10 +38,8 @@ module ChromeData
           end
         end
 
-        # Make the request
-        response = make_request(request)
-
-        parse_response(response)
+        # Make the request and pass to block
+        block.call make_request(request)
       end
 
       # Makes request, returns LolSoap::Response
@@ -73,11 +71,6 @@ module ChromeData
       # Given an element_name and LolSoap::Response, returns an array of Nokogiri::XML::Elements
       def find_elements(element_name, response)
         response.body.xpath(".//x:#{element_name}", 'x' => response.body.namespace.href)
-      end
-
-      # Internal: Given a LolSoap::Response, returns appropriately parsed response
-      def parse_response(response)
-        raise NotImplementedError, '.parse_response should be implemented in subclass'
       end
 
       def request_name

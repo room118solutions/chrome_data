@@ -8,10 +8,12 @@ module ChromeData
         "get#{name.split('::').last}s"
       end
 
-      # Find elements matching class name and instantiate them using their id attribute and text
-      def parse_response(response)
-        find_elements(name.split('::').last.downcase, response).map do |e|
-          new id: e.attr('id').to_i, name: e.text
+      def request(data)
+        super do |response|
+          # Find elements matching class name and instantiate them using their id attribute and text
+          find_elements(name.split('::').last.downcase, response).map do |e|
+            new id: e.attr('id').to_i, name: e.text
+          end
         end
       end
     end
