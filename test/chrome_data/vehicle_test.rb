@@ -32,8 +32,9 @@ describe ChromeData::Vehicle do
       @vehicle.division_id.must_equal 27
     end
 
-    it 'sets model on Vehicle' do
+    it 'sets model and model_id on Vehicle' do
       @vehicle.model.must_equal 'C-Class'
+      @vehicle.model_id.must_equal 21771
     end
 
     describe 'styles' do
@@ -104,8 +105,9 @@ describe ChromeData::Vehicle do
       @vehicle.division_id.must_equal 1
     end
 
-    it 'sets model on Vehicle' do
+    it 'sets model and model_id on Vehicle' do
       @vehicle.model.must_equal 'MDX'
+      @vehicle.model_id.must_equal 29763
     end
 
     describe 'styles' do

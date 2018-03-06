@@ -2,7 +2,7 @@ module ChromeData
   class Vehicle < BaseRequest
     class Engine < Struct.new(:type); end
 
-    attr_accessor :model_year, :division, :division_id, :model, :styles, :engines
+    attr_accessor :model_year, :division, :division_id, :model, :model_id, :styles, :engines
 
     class << self
       def request_name
@@ -19,6 +19,7 @@ module ChromeData
               v.division    = vin_description.attr('division')
               v.division_id = styles.first.xpath("x:division", 'x' => response.body.namespace.href).first.attr('id').to_i
               v.model       = vin_description.attr('modelName')
+              v.model_id    = styles.first.xpath("x:model", 'x' => response.body.namespace.href).first.attr('id').to_i
               v.styles      = styles.map { |e| parse_style(e) }
               v.engines     = parse_engines(response)
             end
@@ -41,6 +42,7 @@ module ChromeData
               v.division    = style.xpath("x:division", 'x' => response.body.namespace.href).first.text
               v.division_id = style.xpath("x:division", 'x' => response.body.namespace.href).first.attr('id').to_i
               v.model       = style.xpath("x:model", 'x' => response.body.namespace.href).first.text
+              v.model_id    = style.xpath("x:model", 'x' => response.body.namespace.href).first.attr('id').to_i
               v.styles      = [parse_style(style)]
               v.engines     = parse_engines(response)
             end
