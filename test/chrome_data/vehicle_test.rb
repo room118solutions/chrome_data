@@ -27,8 +27,9 @@ describe ChromeData::Vehicle do
       @vehicle.model_year.must_equal 2012
     end
 
-    it 'sets division on Vehicle' do
+    it 'sets division and vidision_id on Vehicle' do
       @vehicle.division.must_equal 'Mercedes-Benz'
+      @vehicle.division_id.must_equal 27
     end
 
     it 'sets model on Vehicle' do
@@ -98,8 +99,9 @@ describe ChromeData::Vehicle do
       @vehicle.model_year.must_equal 2017
     end
 
-    it 'sets division on Vehicle' do
+    it 'sets division and division_id on Vehicle' do
       @vehicle.division.must_equal 'Acura'
+      @vehicle.division_id.must_equal 1
     end
 
     it 'sets model on Vehicle' do
