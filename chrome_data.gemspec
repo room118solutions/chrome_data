@@ -18,12 +18,12 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "bundler", "~> 2.4.1"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "minitest"
+  spec.add_development_dependency "minitest", '>= 5.16'
   spec.add_development_dependency "vcr"
-  spec.add_development_dependency "webmock", '~> 1.10.0' # Locked at 1.10.x to prevent VCR warnings
-  spec.add_development_dependency "mocha"
+  spec.add_development_dependency "webmock"
+  spec.add_development_dependency "mocha", '>= 2.0'
 
   spec.add_dependency "symboltable"
   spec.add_dependency "activesupport", '>= 3.0'

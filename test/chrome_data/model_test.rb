@@ -2,7 +2,7 @@ require_relative '../minitest_helper'
 
 describe ChromeData::Model do
   it 'returns a proper request name' do
-    ChromeData::Model.request_name.must_equal 'getModels'
+    _(ChromeData::Model.request_name).must_equal 'getModels'
   end
 
   describe '.find_all_by_year_and_division_id' do
@@ -24,20 +24,20 @@ describe ChromeData::Model do
     it 'returns array of Model objects' do
       find_models
 
-      @models.first.must_be_instance_of ChromeData::Model
-      @models.size.must_equal 39
+      _(@models.first).must_be_instance_of ChromeData::Model
+      _(@models.size).must_equal 39
     end
 
     it 'sets ID on Model objects' do
       find_models
 
-      @models.first.id.must_equal 25459
+      _(@models.first.id).must_equal 25459
     end
 
     it 'sets name on Model objects' do
       find_models
 
-      @models.first.name.must_equal 'C-Max Energi'
+      _(@models.first.name).must_equal 'C-Max Energi'
     end
 
     it 'caches with proper key' do

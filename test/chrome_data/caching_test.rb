@@ -14,9 +14,11 @@ describe ChromeData::Caching do
       foo.expects(:bar).once.returns 'bar'
 
       2.times do
-        ChromeData.cache 'foo' do
+        value = ChromeData.cache 'foo' do
           foo.bar
-        end.must_equal 'bar'
+        end
+
+        _(value).must_equal 'bar'
       end
     end
 
@@ -25,9 +27,11 @@ describe ChromeData::Caching do
       foo.expects(:bar).twice.returns 'bar'
 
       2.times do
-        ChromeData.cache 'foo' do
+        value = ChromeData.cache 'foo' do
           foo.bar
-        end.must_equal 'bar'
+        end
+
+        _(value).must_equal 'bar'
       end
     end
   end
@@ -36,7 +40,7 @@ describe ChromeData::Caching do
     before { ChromeData::Caching.remove_class_variable :@@_cache_store  if ChromeData::Caching.class_variable_defined? :@@_cache_store }
 
     it 'returns nil with no cache_store config' do
-      ChromeData._cache_store.must_equal nil
+      assert_nil ChromeData._cache_store
     end
 
     it 'looks up cache with appropriate namespace when cache_store is an array without options hash' do

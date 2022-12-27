@@ -2,7 +2,7 @@ require_relative '../minitest_helper'
 
 describe ChromeData::Style do
   it 'returns a proper request name' do
-    ChromeData::Style.request_name.must_equal 'getStyles'
+    _(ChromeData::Style.request_name).must_equal 'getStyles'
   end
 
   describe '.find_all_by_model_id' do
@@ -24,20 +24,20 @@ describe ChromeData::Style do
     it 'returns array of Style objects' do
       find_styles
 
-      @models.first.must_be_instance_of ChromeData::Style
-      @models.size.must_equal 11
+      _(@models.first).must_be_instance_of ChromeData::Style
+      _(@models.size).must_equal 11
     end
 
     it 'sets ID on Style objects' do
       find_styles
 
-      @models.first.id.must_equal 349411
+      _(@models.first.id).must_equal 349411
     end
 
     it 'sets name on Style objects' do
       find_styles
 
-      @models.first.name.must_equal '2dr Conv GT'
+      _(@models.first.name).must_equal '2dr Conv GT'
     end
 
     it 'caches with proper key' do

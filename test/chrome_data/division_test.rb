@@ -2,7 +2,7 @@ require_relative '../minitest_helper'
 
 describe ChromeData::Division do
   it 'returns a proper request name' do
-    ChromeData::Division.request_name.must_equal 'getDivisions'
+    _(ChromeData::Division.request_name).must_equal 'getDivisions'
   end
 
   describe '.find_all_by_year' do
@@ -24,20 +24,20 @@ describe ChromeData::Division do
     it 'returns array of Division objects' do
       find_divisions
 
-      @divisions.first.must_be_instance_of ChromeData::Division
-      @divisions.size.must_equal 43
+      _(@divisions.first).must_be_instance_of ChromeData::Division
+      _(@divisions.size).must_equal 43
     end
 
     it 'sets ID on Division objects' do
       find_divisions
 
-      @divisions.first.id.must_equal 1
+      _(@divisions.first.id).must_equal 1
     end
 
     it 'sets name on Division objects' do
       find_divisions
 
-      @divisions.first.name.must_equal 'Acura'
+      _(@divisions.first.name).must_equal 'Acura'
     end
 
     it 'caches with proper key' do

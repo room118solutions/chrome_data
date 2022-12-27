@@ -8,6 +8,6 @@ describe ChromeData do
       config.foo = 'bar'
     end
 
-    ChromeData.config.foo.must_equal 'bar'
+    _(ChromeData.config.foo).must_equal 'bar'
   end
 end
