@@ -1,18 +1,18 @@
 require_relative '../minitest_helper'
 
 describe ChromeData::Vehicle do
+  include WsdlCassette
+  include ConfigureApiAccess
+
   it 'returns a proper request name' do
     _(ChromeData::Vehicle.request_name).must_equal 'describeVehicle'
   end
 
   describe '.find_by_vin' do
     before do
-      ChromeData.configure do |c|
-        c.account_number = '123456'
-        c.account_secret = '1111111111111111'
-      end
+      configure_api_access
 
-      VCR.use_cassette('wsdl') do
+      use_wsdl_cassette do
         VCR.use_cassette('vehicles/WDDGF4HB1CR000000') do
           @vehicle = ChromeData::Vehicle.find_by_vin('WDDGF4HB1CR000000')
         end
@@ -44,13 +44,13 @@ describe ChromeData::Vehicle do
       end
 
       it 'sets name' do
-        _(@vehicle.styles[0].name).must_equal '4dr Sdn C250 Sport RWD'
-        _(@vehicle.styles[1].name).must_equal '4dr Sdn C250 Luxury RWD'
+        _(@vehicle.styles[0].name).must_equal '4dr Sdn C 250 Sport RWD'
+        _(@vehicle.styles[1].name).must_equal '4dr Sdn C 250 Luxury RWD'
       end
 
       it 'sets trim' do
-        _(@vehicle.styles[0].trim).must_equal 'C250 Sport'
-        _(@vehicle.styles[1].trim).must_equal 'C250 Luxury'
+        _(@vehicle.styles[0].trim).must_equal 'C 250 Sport'
+        _(@vehicle.styles[1].trim).must_equal 'C 250 Luxury'
       end
 
       it 'sets name_without_trim' do
@@ -80,12 +80,9 @@ describe ChromeData::Vehicle do
 
   describe '.find_by_style_id' do
     before do
-      ChromeData.configure do |c|
-        c.account_number = '123456'
-        c.account_secret = '1111111111111111'
-      end
+      configure_api_access
 
-      VCR.use_cassette('wsdl') do
+      use_wsdl_cassette do
         VCR.use_cassette('vehicles/387520') do
           @vehicle = ChromeData::Vehicle.find_by_style_id('387520')
         end

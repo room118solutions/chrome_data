@@ -1,20 +1,20 @@
 require_relative '../minitest_helper'
 
 describe ChromeData::Division do
+  include WsdlCassette
+  include ConfigureApiAccess
+
   it 'returns a proper request name' do
     _(ChromeData::Division.request_name).must_equal 'getDivisions'
   end
 
   describe '.find_all_by_year' do
     before do
-      ChromeData.configure do |c|
-        c.account_number = '123456'
-        c.account_secret = '1111111111111111'
-      end
+      configure_api_access
     end
 
     def find_divisions
-      VCR.use_cassette('wsdl') do
+      use_wsdl_cassette do
         VCR.use_cassette('2013/divisions') do
           @divisions = ChromeData::Division.find_all_by_year(2013)
         end

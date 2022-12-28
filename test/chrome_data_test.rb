@@ -5,9 +5,9 @@ describe ChromeData do
 
   it 'yields configuration object to block' do
     ChromeData.configure do |config|
-      config.foo = 'bar'
+      config.account_number = 'foo123'
     end
 
-    _(ChromeData.config.foo).must_equal 'bar'
+    _(ChromeData.config.account_number).must_equal 'foo123'
   end
 end

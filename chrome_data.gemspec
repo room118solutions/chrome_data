@@ -25,7 +25,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "mocha", '>= 2.0'
 
-  spec.add_dependency "symboltable"
   spec.add_dependency "activesupport", '>= 3.0'
   spec.add_dependency "lolsoap", '>= 0.7.0'
 end
