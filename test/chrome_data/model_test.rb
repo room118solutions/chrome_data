@@ -1,20 +1,20 @@
 require_relative '../minitest_helper'
 
 describe ChromeData::Model do
+  include WsdlCassette
+  include ConfigureApiAccess
+
   it 'returns a proper request name' do
     _(ChromeData::Model.request_name).must_equal 'getModels'
   end
 
   describe '.find_all_by_year_and_division_id' do
     before do
-      ChromeData.configure do |c|
-        c.account_number = '123456'
-        c.account_secret = '1111111111111111'
-      end
+      configure_api_access
     end
 
     def find_models
-      VCR.use_cassette('wsdl') do
+      use_wsdl_cassette do
         VCR.use_cassette('2013/divisions/13/models') do
           @models = ChromeData::Model.find_all_by_year_and_division_id(2013, 13) # 2013 Fords
         end

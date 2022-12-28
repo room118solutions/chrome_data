@@ -18,12 +18,4 @@ describe ChromeData::Config do
 
     _(config.language).must_equal 'es'
   end
-
-  it 'uses default value for api_revision, but it can be overridden' do
-    _(config.api_revision).must_equal '7c'
-
-    config.api_revision = '7a'
-
-    _(config.api_revision).must_equal '7a'
-  end
 end

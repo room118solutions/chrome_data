@@ -1,20 +1,20 @@
 require_relative '../minitest_helper'
 
 describe ChromeData::Style do
+  include WsdlCassette
+  include ConfigureApiAccess
+
   it 'returns a proper request name' do
     _(ChromeData::Style.request_name).must_equal 'getStyles'
   end
 
   describe '.find_all_by_model_id' do
     before do
-      ChromeData.configure do |c|
-        c.account_number = '123456'
-        c.account_secret = '1111111111111111'
-      end
+      configure_api_access
     end
 
     def find_styles
-      VCR.use_cassette('wsdl') do
+      use_wsdl_cassette do
         VCR.use_cassette('2013/divisions/13/models/24997/styles') do
           @models = ChromeData::Style.find_all_by_model_id(24997) # 2013 Ford Mustang
         end

@@ -22,6 +22,13 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## (Re-)Recording VCR Cassettes
+You can pass your Chrome Data API credentials via ENV vars (they'll be filtered from the generated VCR cassettes):
+
+```shell
+$ ACCOUNT_NUMBER=1234 ACCOUNT_SECRET=foo rake test
+```
+
 ## Contributing
 
 1. Fork it

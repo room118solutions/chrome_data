@@ -3,6 +3,8 @@ require "lolsoap"
 
 module ChromeData
   class BaseRequest
+    API_REVISION = '7c'
+
     def initialize(attrs={})
       attrs.each do |k, v|
         send "#{k}=", v
@@ -61,7 +63,7 @@ module ChromeData
       end
 
       def wsdl_body
-        @@wsdl_body ||= Net::HTTP.get_response(URI('http://services.chromedata.com/Description/7a?wsdl')).body
+        @@wsdl_body ||= Net::HTTP.get_response(URI("http://services.chromedata.com/Description/#{API_REVISION}?wsdl")).body
       end
 
       def endpoint_uri
