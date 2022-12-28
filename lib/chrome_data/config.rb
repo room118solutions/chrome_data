@@ -10,11 +10,11 @@ module ChromeData
     attr_writer :country, :language
 
     def country
-      @country || 'US'
+      instance_variable_defined?(:@country) ? @country : 'US'
     end
 
     def language
-      @language || 'en'
+      instance_variable_defined?(:@language) ? @language : 'en'
     end
   end
 end
